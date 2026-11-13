@@ -1,0 +1,5 @@
+/bin/
+*.test
+/audit.jsonl
+/pins.json
+/docs/report.html

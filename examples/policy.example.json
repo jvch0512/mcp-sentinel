@@ -1,0 +1,16 @@
+{
+  "mode": "enforce",
+  "tools": {
+    "allow": ["read_*", "fetch_url", "weather", "notes"],
+    "deny": ["read_secret*"]
+  },
+  "arguments": [
+    { "tool": "*", "arg": "*", "max_length": 100000, "block_private_urls": true },
+    { "tool": "read_file", "arg": "path", "path_roots": ["/work/project"], "deny_pattern": "\\.(pem|key|p12)$" }
+  ],
+  "block_secrets_in_arguments": true,
+  "rate_limit": { "per_minute": 60 },
+  "results": { "redact_secrets": true, "injection": "block", "max_bytes": 1048576 },
+  "descriptions": { "injection": "block", "pin": true },
+  "server": { "block_sampling": true }
+}
